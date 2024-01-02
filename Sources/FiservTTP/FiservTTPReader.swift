@@ -189,7 +189,7 @@ internal class FiservTTPReader {
                                                      localizedDescription: NSLocalizedString("The card reader session has not been initialized.", comment: "")))
         }
         do {
-            let request = PaymentCardTransactionRequest(amount: amount, currencyCode: currencyCode, for: .purchase)
+            let request = PaymentCardTransactionRequest(amount: abs(amount), currencyCode: currencyCode, for: amount < 0 ? .refund : .purchase)
             
             // This method throws a ReadError if a person dismisses the sheet or the sheet fails to appear.
             
